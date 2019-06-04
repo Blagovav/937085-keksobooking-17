@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Алексей Благов](https://up.htmlacademy.ru/javascript/17/user/937085).
-* Наставник: `Неизвестно`.
+* Наставник: [Михаил Семиколенов](https://htmlacademy.ru/profile/id19706).
 
 ---
 
