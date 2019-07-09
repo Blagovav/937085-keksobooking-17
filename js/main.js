@@ -1,86 +1,55 @@
 'use strict';
 
-var getrandomNumbers = function () {
-  var list = [];
-  var NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8].sort(function (NUMBERS) {
-    return Math.random(NUMBERS) - 0.5;
+var list = [];
+var generatPinData = (8);
+var items = ['palace', 'flat', 'house', 'bungalo'];
+var r = ['01', '02', '03', '04', '05', '06', '07', '08'].sort(function () {
+  return Math.random(r) - 0.5;
 });
-  NUMBERS.forEach (function (i) {
-    list.push({'id': i});
-  });
-  return list;
+
+for (var i = 0; i < r.length; i++) {
+  list.push(
+      {
+        'author': {
+          'avatar': 'img/avatars/user' + r[i] + '.png'
+        },
+        'offer': {
+          'type': items[Math.floor(Math.random() * items.length)],
+        },
+        'location': {
+          'x': Math.floor(Math.random() * 1000) + 10,
+          'y': Math.floor(Math.random() * 630) + 130
+        }
+      }
+  );
 }
 
-var TYPE = ['place', 'flat', 'house', 'bungalo'];
-
-var getrandomType = function () {
-  var randomType = Math.floor(Math.random() * TYPE.length);
-  return TYPE[randomType];
+var createBlock = function (templ) {
+  var block = templ.cloneNode(true);
+  block.style.left = list.location.x + 'px';
+  block.style.top = list.location.y + 'px';
+  block.querySelector('img').src = list.author.avatar;
+  block.querySelector('img').alt = list.alt.text;
 };
 
-var getrandomPositionY = function (max, min) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+var renderPins = function (n) {
+  var sector = document.querySelector('.map');
+  sector.classList.remove('map--faded');
+
+  var blocks = document.querySelector('.map__pins');
+  var template = document.querySelector('.pin')
+.content
+.querySelector('.map__pin');
+  var fragment = document.createDocumentFragment();
+  var pinData = generatPinData(8);
+  for (i = 0; i < n; i++) {
+    var block = createBlock(template, pinData[i]);
+    fragment.appendChild(block);
+  }
+  blocks.appendChild(fragment);
 };
 
-var getrandomPositionX = function (max, min) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
-
-var arrObject = [];
-
-arrObject[0] = {
-  avatar: getrandomNumbers(),
-  offer: getrandomType(),
-  locationY: getrandomPositionY(130, 630),
-  locationX: getrandomPositionX(10, 1000)
-};
-
-arrObject[1] = {
-  avatar: getrandomNumbers(),
-  offer: getrandomType(),
-  locationY: getrandomPositionY(130, 630)
-};
-
-arrObject[2] = {
-  avatar: getrandomNumbers(),
-  offer: getrandomType(),
-  locationY: getrandomPositionY(130, 630)
-};
-
-arrObject[3] = {
-  avatar: getrandomNumbers(),
-  offer: getrandomType(),
-  locationY: getrandomPositionY(130, 630),
-  locationX: getrandomPositionX(10, 1000)
-};
-
-arrObject[4] = {
-  avatar: getrandomNumbers(),
-  offer: getrandomType(),
-  locationY: getrandomPositionY(130, 630),
-  locationX: getrandomPositionX(10, 1000)
-};
-arrObject[5] = {
-  avatar: getrandomNumbers(),
-  offer: getrandomType(),
-  locationY: getrandomPositionY(130, 630),
-  locationX: getrandomPositionX(10, 1000)
-};
-arrObject[6] = {
-  avatar: getrandomNumbers(),
-  offer: getrandomType(),
-  locationY: getrandomPositionY(130, 630),
-  locationX: getrandomPositionX(10, 1000)
-};
-
-arrObject[7] = {
-  avatar: getrandomNumbers(),
-  offer: getrandomType(),
-  locationY: getrandomPositionY(130, 630),
-  locationX: getrandomPositionX(10, 1000)
-};
+renderPins(8);
 
 var userDialog = document.querySelector('.map');
 userDialog.classList.remove('map--faded');
-
