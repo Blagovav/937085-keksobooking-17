@@ -1,7 +1,7 @@
 'use strict';
 
 var list = [];
-var generatPinData = (8);
+var generatPinData = 8;
 var items = ['palace', 'flat', 'house', 'bungalo'];
 var r = ['01', '02', '03', '04', '05', '06', '07', '08'].sort(function () {
   return Math.random(r) - 0.5;
@@ -37,11 +37,11 @@ var renderPins = function (n) {
   sector.classList.remove('map--faded');
 
   var blocks = document.querySelector('.map__pins');
-  var template = document.querySelector('.pin')
+  var template = document.querySelector('#pin')
 .content
 .querySelector('.map__pin');
   var fragment = document.createDocumentFragment();
-  var pinData = generatPinData(8);
+  var pinData = document.generatPinData(8);
   for (i = 0; i < n; i++) {
     var block = createBlock(template, pinData[i]);
     fragment.appendChild(block);
@@ -49,7 +49,11 @@ var renderPins = function (n) {
   blocks.appendChild(fragment);
 };
 
-renderPins(8);
+var pinMain = document.querySelector('.map__pin--main');
 
-var userDialog = document.querySelector('.map');
-userDialog.classList.remove('map--faded');
+pinMain.addEventListener('click', function () {
+  var userDialog = document.querySelector('.map');
+  userDialog.classList.remove('map--faded');
+  renderPins(8);
+});
+
