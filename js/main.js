@@ -18,7 +18,7 @@ var generatPinData = function () {
           },
           'location': {
             'x': Math.floor(Math.random() * 1000) + 10,
-            'y': Math.floor(Math.random() * 630) + 130
+            'y': Math.floor(Math.random() * 600) + 100
           }
         }
     );
@@ -32,6 +32,7 @@ var createBlock = function (templ, pin) {
   block.style.top = pin.location.y + 'px';
   block.querySelector('img').src = pin.author.avatar;
   block.querySelector('img').alt = pin.offer.type;
+  return block;
 };
 
 var renderPins = function () {
@@ -45,8 +46,8 @@ var renderPins = function () {
   var fragment = document.createDocumentFragment();
   var pinData = generatPinData();
   for (var i = 0; i < n.length; i++) {
-    //var block = createBlock(template, pinData[i]);
-    //fragment.append(block);
+    var block = createBlock(template, pinData[i]);
+    fragment.append(block);
   }
   blocks.append(fragment);
 };
