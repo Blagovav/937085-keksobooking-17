@@ -58,7 +58,15 @@ var adForm = document.querySelector('.ad-form');
 var fildsetDisable = function () {
   var fildsetD = adForm.getElementsByTagName('fieldset');
   for (var i = 0; i < fildsetD.length; i++) {
-    fildsetD[i].setAttribute('disable', 'disable');
+    fildsetD[i].setAttribute('disabled', 'disabled');
+  }
+};
+fildsetDisable();
+
+var fieldsetNotDisable = function () {
+  var fildsetD = adForm.getElementsByTagName('fieldset');
+  for (var i = 0; i < fildsetD.length; i++) {
+    fildsetD[i].removeAttribute('disabled', 'disabled');
   }
 };
 
@@ -67,5 +75,5 @@ mainPin.addEventListener('click', function () {
   userDialog.classList.remove('map--faded');
   renderPins();
   adForm.classList.remove('ad-form--disabled');
-  fildsetDisable();
+  fieldsetNotDisable();
 });
