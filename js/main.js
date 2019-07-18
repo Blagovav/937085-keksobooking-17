@@ -70,6 +70,7 @@ var fieldsetNotDisable = function () {
   }
 };
 
+
 mainPin.addEventListener('click', function () {
   var userDialog = document.querySelector('.map');
   userDialog.classList.remove('map--faded');
@@ -77,3 +78,6 @@ mainPin.addEventListener('click', function () {
   adForm.classList.remove('ad-form--disabled');
   fieldsetNotDisable();
 });
+
+var startAdress = document.querySelector('#address');
+startAdress.setAttribute('value', mainPin.style.left + '.' + mainPin.style.top);
